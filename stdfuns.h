@@ -10,6 +10,7 @@
 #include <time.h>
 
 #define loop for(;;)
+#define loopn(v) int v=0; for(;;v++)
 #define loopi(v,m) int v = 0; for(; v < m ; v++ )
 
 #define mputc(C) fputc( C , stdout)
@@ -17,7 +18,7 @@
 #define puti(i) printf("%d", i)
 #define putiln(i) printf("%d\n", i)
 
-#define geti(s, v) mputs( s ); scanf("%d", &v)
+#define mgeti(s, v) int v; mputs( s ); scanf("%d", &v)
 
 #define false 0
 #define true  1
