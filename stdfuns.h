@@ -17,6 +17,8 @@
 #define puti(i) printf("%d", i)
 #define putiln(i) printf("%d\n", i)
 
+#define geti(s, v) mputs( s ); scanf("%d", &v)
+
 #define false 0
 #define true  1
 
