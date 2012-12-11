@@ -7,12 +7,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define loop for(;;)
+#define loopi(v,m) int v = 0; for(; v < m ; v++ )
 
 #define mputc(C) fputc( C , stdout)
 #define mputs(s) fputs( s , stdout)
 #define puti(i) printf("%d", i)
+#define putiln(i) printf("%d\n", i)
 
 #define false 0
 #define true  1
@@ -30,4 +33,8 @@ char* itostr(int i, size_t *len) {
 void fill(int no, char c) {
     for (int i = 0; i < no; i++)
         mputc(c);
+}
+
+int randrng(int a, int  b) {
+    return rand() % abs(b-a) + a;
 }
