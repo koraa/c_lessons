@@ -4,6 +4,7 @@
  * Author: Karolin Varner
  * Date:   6.12.2012
  */
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
