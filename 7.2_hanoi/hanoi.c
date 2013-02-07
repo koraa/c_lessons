@@ -271,7 +271,7 @@ hnum movhanoi(hnum n, htower* data, hnum p0, hnum pstack, hnum pZ, hnum cnt) {
 }
 
 int main() {
-    int N = 18;
+    int N = 24;
 
     htower* ts = ts_init(N);
     render(ts,3);
