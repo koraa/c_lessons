@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef long long int hnum;
 typedef char* cstring;
@@ -40,7 +41,7 @@ void ht_init(htower* t, hnum cap, cstring name) {
     t->top = -1;
     t->cap = cap;
     t->name = name;
-    t->stack = malloc( cap + sizeof(hnum));
+    t->stack = malloc( cap * sizeof(hnum));
 }
 
 /** 
@@ -52,8 +53,8 @@ void ht_push(htower* t, hnum r) {
 
     if (t->cap <= ntop) {
         fprintf(stderr, 
-                "[FATAL] Error trying to add a %lfnd element"
-                 "to tower %s with a capacity of %lf\n",
+                "[FATAL] Error trying to add a %lind element"
+                 "to tower %s with a capacity of %li\n",
                  ntop, t->name, t->cap);
         pt_tower(t);
         exit(23);
@@ -63,14 +64,13 @@ void ht_push(htower* t, hnum r) {
         hnum toprad = t->stack[t->top];
         if (r > toprad) {
             fprintf(stderr, "[FATAL] Error trying on %s to add a"
-                    "%lfnd element(r=%lf) to smaller element(r=%lf).\n",
+                    "%lind element(r=%li) to smaller element(r=%li).\n",
                     t->name, ntop, r, toprad);
             pt_tower(t);
             exit(23);
         }
     }
-
-    t->top++;
+    t->top = ntop;
     t->stack[ntop] = r;
 }
 
@@ -97,12 +97,13 @@ hnum ht_pop(htower* t) {
  */
 htower* ts_init(hnum h) {
     htower* set = malloc(3*sizeof(htower));
-    ht_init(set,   h, "A");
-    ht_init(set+1, h, "B");
-    ht_init(set+2, h, "C");
+    ht_init(set,   h+1, "A");
+    ht_init(set+1, h+1, "B");
+    ht_init(set+2, h+1, "C");
 
-    for (;h > 0; h--)
+    for (;h > 0; h--) {
         ht_push(set, h);
+    }
 
     return set;
 }
@@ -114,6 +115,15 @@ htower* ts_init(hnum h) {
 hnum trad(htower* ht) {
     if (ht->top < 0) return 0;
     return ht->stack[0];
+}
+
+int hexlen(int i) {
+    if (i == 0) return 1;
+
+    int r = 0;
+    for (; i>0; i/=16)
+        r++;
+    return r;
 }
 
 char space = ' ',
@@ -186,8 +196,13 @@ void render(htower* ht, hnum N) {
 
             fill(space, airrad);
             fill(disk, rad);
-            mputc(wood);
-            fill(disk, rad);
+
+            if (rad <= 0)
+                mputc(wood);
+            else
+                printf("%x", rad);
+
+            fill(disk, rad-hexlen(rad)+1);
             fill(space, airrad);
 
             fill(space, Hpad);
@@ -220,7 +235,6 @@ void render(htower* ht, hnum N) {
     // LOWER BORDER
     lfill(bord, width);
     cr();
-
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -247,16 +261,21 @@ hnum movhanoi(hnum n, htower* data, hnum p0, hnum pstack, hnum pZ, hnum cnt) {
     cnt = movhanoi(n-1, data, p0, pZ, pstack, cnt);
     
     printf("%i | mov %i : %i -> %i\n", cnt++, n, p0, pZ);
-    ht_push(data+pZ, ht_pop(data+p0));
+
+    hnum disc = ht_pop(data+p0);
+    ht_push(data+pZ, disc);
     render(data, 3);
+    sleep(1);
 
     return movhanoi(n-1, data, pstack, p0, pZ, cnt);
 }
 
 int main() {
-    htower* ts = ts_init(3);
-    render(ts, 3);
+    int N = 18;
 
-    movhanoi(3, ts, 0, 1, 2, 0);
+    htower* ts = ts_init(N);
+    render(ts,3);
+
+    movhanoi(N, ts, 0, 1, 2, 0);
     return 0;
 }
