@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include <stdlib.h>
 
+#include <pthread.h>
+
 #include "boolarr.h"
 
 using namespace std;
@@ -12,6 +14,11 @@ typedef unsigned long ulong;
 typedef unsigned int  uint;
 
 std::vector<ulong> primes;
+ulong primes_found = 0;
+
+/**
+ * Check if a single number is a prime.
+ */
 bool ckprime(ulong mayprime) {
     double frt = std::sqrt(mayprime);
     ulong rt = (ulong)frt;
@@ -36,6 +43,9 @@ bool ckprime(ulong mayprime) {
 
     return true;
 }
+
+
+void* __search_primes(void *args)
 
 inline double secs() {
     struct timeval tv;
