@@ -5,3 +5,6 @@ run: compile
 
 compile:
 	gcc -o $(TARG) -std=c99 *.c
+
+clean:
+	rm $(TARG)
