@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
+
 
 #define loop for(;;)
 #define loopn(v) int v=0; for(;;v++)
