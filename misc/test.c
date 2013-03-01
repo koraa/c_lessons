@@ -3,11 +3,11 @@
 //
 // Author: Karolin Varner
 
-#include <stdio.h>
+#include "../stdfuns.h"
 
-int main() {
-    printf("\n= Prefix/postfix =============================\n\n");
 
+
+test(prefix_vs_postfix) {
     int i = 23;
     printf("==> i: %i\n", i);
     printf("i-- => %i",   i--);
@@ -22,5 +22,27 @@ int main() {
     printf("==> i: %i\n", i);
     printf("i-=2 => %i",  i-=2);
     printf("==> i: %i\n", i);
+
+    return true;
+}
+
+test(array_literal) {
+    const size_t len = 5;
+    int arr[] = {-3, 7, 5, 13, 42};
+
+    printf("Array cont: ");
+    itr(i,len) {
+        puti(arr[i]);
+        mputc(' ');
+    }
+    mputc('\n');
+
+    return true;
+}
+
+int main() {
+    run(prefix_vs_postfix);
+    run(array_literal);
+
     return 0;
 }
