@@ -4,7 +4,7 @@ run: compile
 	./$(TARG)
 
 compile:
-	gcc -o $(TARG) -std=c99 *.c
+	gcc -Wall -o $(TARG) -std=c99 *.c
 
 clean:
 	rm $(TARG)
