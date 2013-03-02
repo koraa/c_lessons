@@ -30,7 +30,7 @@ test(array_literal) {
     const size_t len = 5;
     int arr[] = {-3, 7, 5, 13, 42};
 
-    printf("Array cont: ");
+    printf("Array %p cont: ", arr);
     itr(i,len) {
         puti(arr[i]);
         mputc(' ');
