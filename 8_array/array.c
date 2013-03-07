@@ -4,8 +4,13 @@ void dump_i_arr(int *a, size_t len) {
     size_t size = sizeof(int) * len;
 
     printf("int[] where: len=%ld, size=%ldbytes: ", len, size);
-    
     itr(i, len) {
+        puti(a[i]);
+        mputc(' '); 
+    }
+
+    printf("\n\t[REVERSE]: ");
+    itr0(i, len) {
         puti(a[i]);
         mputc(' '); 
     }
