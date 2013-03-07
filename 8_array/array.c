@@ -26,6 +26,18 @@ size_t ar_max_ps(int *ar, size_t len) {
     return p;
 }
 
+void ar_fill_rnd(int *ar, size_t len, int a, int z) {
+    itr(i,len) {
+        ar[i] = randrng(a,z);
+    } 
+}
+
+int* PTR_CREATE_rnd(size_t len, int a, int z) {
+    int* pt = (int*) malloc(len*sizeof(int));
+    ar_fill_rnd(pt, len, a, z);
+    return pt;
+}
+
 //===============================================
 // Print
 
@@ -66,6 +78,12 @@ void autoarr() {
     // GET d4
     int d4 = a[4];
     printf("d4 = a[4] = %i\n\n", d4);
+
+    puts("LOTTO!");
+    size_t lotto_len = 6;
+    int* lotto = PTR_CREATE_rnd(lotto_len,0,49);
+    dump_i_arr(lotto, lotto_len);
+    free(lotto);
 }
 
 void userarr() {
