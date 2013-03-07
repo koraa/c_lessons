@@ -26,12 +26,20 @@ size_t ar_max_ps(int *ar, size_t len) {
     return p;
 }
 
+/**
+ * Fill array with random number
+ */
 void ar_fill_rnd(int *ar, size_t len, int a, int z) {
     itr(i,len) {
         ar[i] = randrng(a,z);
     } 
 }
 
+/**
+ * ALLOCATE MEMNORY
+ * and the fill it with random numbers.
+ * memory must be freed!
+ */
 int* PTR_CREATE_rnd(size_t len, int a, int z) {
     int* pt = (int*) malloc(len*sizeof(int));
     ar_fill_rnd(pt, len, a, z);
