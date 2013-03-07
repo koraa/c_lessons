@@ -97,7 +97,7 @@ void autoarr() {
     // LOTTO
     srand(time(NULL));
 
-    puts("LOTTO!");
+    puts("RANDOM 6!");
     size_t lotto_len = 6;
     int* lotto = PTR_CREATE_rnd(lotto_len,0,49);
     dump_i_arr(lotto, lotto_len);
@@ -108,8 +108,32 @@ void autoarr() {
         printf("\nGuess %i ->", guess);
     } while (! ar_contains(lotto, lotto_len, guess));
     puts("YESSS!");
-
     free(lotto);
+
+}
+
+void lotto() {
+    // Real Lotto
+    const size_t bot_l = 49;
+    int bot[bot_l];
+    itr(i, bot_l)
+        bot[i] = i;
+
+    const size_t d_l = 6;
+    int d[d_l];
+    
+    size_t bot_use = bot_l;
+    itr (no, d_l) {
+       size_t p = randrng(0, 49-1-no);
+       d[no] = bot[p];
+
+        bot_use--;
+
+       for (; p< bot_use; p++)
+           bot[p] = bot[p+1];
+    }
+    puts("[REAL LOTTO]");
+    dump_i_arr(d, d_l);
 }
 
 void userarr() {
@@ -131,6 +155,7 @@ int main() {
     setvbuf(stdout, NULL, _IONBF, 0);
 
     autoarr();
+    lotto();
     //userarr();
     return 0;
 }
