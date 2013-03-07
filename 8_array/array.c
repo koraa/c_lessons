@@ -1,5 +1,31 @@
 #include "../stdfuns.h"
 
+/**
+ * Find the maximum
+ */
+int ar_max(int *ar, size_t len) {
+    int r = ar[0];
+    for (size_t i=1; i<len; i++)
+        if (ar[i] > r)
+            r=ar[i];
+    return r;
+}
+
+/**
+ * Find the maximum and return its pos
+ */
+size_t ar_max_ps(int *ar, size_t len) {
+    int r = ar[0];
+    size_t p =0;
+    for (size_t i=1; i<len; i++) {
+        if (ar[i] > r) {
+            r=ar[i];
+            p=i;
+        }
+    }
+    return r;
+}
+
 //===============================================
 // Print
 
