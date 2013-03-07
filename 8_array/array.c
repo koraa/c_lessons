@@ -46,6 +46,13 @@ int* PTR_CREATE_rnd(size_t len, int a, int z) {
     return pt;
 }
 
+bool ar_contains(int *ar, size_t len, int x) {
+    itr(i, len)
+        if (ar[i] == x)
+            return true;
+    return false;
+}
+
 //===============================================
 // Print
 
@@ -87,10 +94,21 @@ void autoarr() {
     int d4 = a[4];
     printf("d4 = a[4] = %i\n\n", d4);
 
+    // LOTTO
+    srand(time(NULL));
+
     puts("LOTTO!");
     size_t lotto_len = 6;
     int* lotto = PTR_CREATE_rnd(lotto_len,0,49);
     dump_i_arr(lotto, lotto_len);
+
+    int guess;
+    do {
+        guess = randrng(0, 49);
+        printf("\nGuess %i ->", guess);
+    } while (! ar_contains(lotto, lotto_len, guess));
+    puts("YESSS!");
+
     free(lotto);
 }
 
