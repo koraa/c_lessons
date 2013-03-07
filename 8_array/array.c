@@ -23,7 +23,7 @@ size_t ar_max_ps(int *ar, size_t len) {
             p=i;
         }
     }
-    return r;
+    return p;
 }
 
 //===============================================
@@ -32,7 +32,9 @@ size_t ar_max_ps(int *ar, size_t len) {
 void dump_i_arr(int *a, size_t len) {
     size_t size = sizeof(int) * len;
 
-    printf("int[] where: len=%ld, size=%ldbytes: ", len, size);
+    printf("int[] where: len=%ld, size=%ldbytes, max=%d@%ld: ", 
+            len, size,
+            ar_max(a,len), ar_max_ps(a,len));
     itr(i, len) {
         puti(a[i]);
         mputc(' '); 
