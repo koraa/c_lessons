@@ -1,5 +1,8 @@
 #include "../stdfuns.h"
 
+//===============================================
+// Print
+
 void dump_i_arr(int *a, size_t len) {
     size_t size = sizeof(int) * len;
 
@@ -16,6 +19,9 @@ void dump_i_arr(int *a, size_t len) {
     }
     mputc('\n');
 }
+
+//=================================================
+// TEST
 
 void autoarr() {
     // (1) INIT
@@ -46,10 +52,13 @@ void userarr() {
     dump_i_arr(arr, len);
 }
 
+//==============================================
+//RUN
+
 int main() {
     setvbuf(stdout, NULL, _IONBF, 0);
 
     autoarr();
-    userarr();
+    //userarr();
     return 0;
 }
