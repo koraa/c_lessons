@@ -26,26 +26,6 @@ size_t ar_max_ps(int *ar, size_t len) {
     return p;
 }
 
-/**
- * Fill array with random number
- */
-void ar_fill_rnd(int *ar, size_t len, int a, int z) {
-    itr(i,len) {
-        ar[i] = randrng(a,z);
-    } 
-}
-
-/**
- * ALLOCATE MEMNORY
- * and the fill it with random numbers.
- * memory must be freed!
- */
-int* PTR_CREATE_rnd(size_t len, int a, int z) {
-    int* pt = (int*) malloc(len*sizeof(int));
-    ar_fill_rnd(pt, len, a, z);
-    return pt;
-}
-
 bool ar_contains(int *ar, size_t len, int x) {
     itr(i, len)
         if (ar[i] == x)
@@ -96,20 +76,6 @@ void autoarr() {
 
     // LOTTO
     srand(time(NULL));
-
-    puts("RANDOM 6!");
-    size_t lotto_len = 6;
-    int* lotto = PTR_CREATE_rnd(lotto_len,0,49);
-    dump_i_arr(lotto, lotto_len);
-
-    int guess;
-    do {
-        guess = randrng(0, 49);
-        printf("\nGuess %i ->", guess);
-    } while (! ar_contains(lotto, lotto_len, guess));
-    puts("YESSS!");
-    free(lotto);
-
 }
 
 void lotto() {
@@ -132,8 +98,16 @@ void lotto() {
        for (; p< bot_use; p++)
            bot[p] = bot[p+1];
     }
+
     puts("[REAL LOTTO]");
     dump_i_arr(d, d_l);
+
+    int guess;
+    do {
+        guess = randrng(0, 48);
+        printf("\nGuess %i ->", guess);
+    } while (! ar_contains(d, d_l, guess));
+    puts("YESSS!");
 }
 
 void userarr() {
