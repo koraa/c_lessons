@@ -79,29 +79,34 @@ void autoarr() {
 }
 
 void lotto() {
-    // Real Lotto
+    // Create Lotto bottich, fill swith sequence [0;49]
     const size_t bot_l = 49;
     int bot[bot_l];
+
     itr(i, bot_l)
         bot[i] = i;
 
+    // Instanciate lotto
     const size_t d_l = 6;
     int d[d_l];
-    
+   
+    // Draw numbers 
     size_t bot_use = bot_l;
     itr (no, d_l) {
        size_t p = randrng(0, 49-1-no);
        d[no] = bot[p];
 
+        // Shift the numbers in the container
         bot_use--;
-
-       for (; p< bot_use; p++)
+        for (; p< bot_use; p++)
            bot[p] = bot[p+1];
     }
 
+    // Output -------------------------------------------
     puts("[REAL LOTTO]");
     dump_i_arr(d, d_l);
 
+    // Guess for the number ------------------------------
     int guess;
     do {
         guess = randrng(0, 48);
