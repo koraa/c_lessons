@@ -20,8 +20,9 @@
 // DEPRECATE
 #define loopi(v,m) for(size_t v=0; v < m ; v++ )
 
+
 #define itr(v, mx) loopi(v, mx)
-#define itr0(v, mx) for (size_t v=mx-1; v=>0; v--)
+#define itr0(v, mx) for (long v=mx-1; v>=0; v--)
 
 ///////////////////////////
 // IO
