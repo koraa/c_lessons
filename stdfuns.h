@@ -82,6 +82,21 @@ void fill(int no, char c) {
         mputc(c);
 }
 
+////////////////////////////
+// Random
+
+void rndinit() {
+    srand(time(NULL));
+}
+
 int randrng(int a, int  b) {
     return rand() % abs(b-a) + a;
+}
+
+int* randar(size_t len) {
+    int* pt= malloc(sizeof(int) * len);
+    
+    itr(i, len) {
+        pt[i] = rand();
+    }
 }
