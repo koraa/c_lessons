@@ -103,17 +103,30 @@ int* randar(size_t len) {
     return pt;
 }
 
+int* randarng(int a, int z, size_t len) {
+    int* pt= malloc(sizeof(int) * len);
+    
+    itr(i, len) {
+        pt[i] = randrng(a,z);
+    }
+
+    return pt;
+}
+
 ///////////////////////////////////
 // Arrays
 
 
-void dump_i_arr(int *a, size_t len) {
+void dump_i_arr(int *a, size_t len, bool indices) {
     size_t size = sizeof(int) * len;
 
     printf("int[] where: len=%ld, size=%ldbytes ==> ",
             len, size);
     itr(i, len) {
-        printf("%li:%i ", i, a[i]);
+        if (indices)
+            printf("%li:%i ", i, a[i]);
+        else
+            printf("%i ", a[i]);
     }
     mputc('\n');
 }
