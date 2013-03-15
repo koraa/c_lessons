@@ -36,6 +36,7 @@ Nice ascii art:
 * 2erpot
 * Christmas Tree
 * Hanoi
+* Sorting
 
 TODO
 ----
