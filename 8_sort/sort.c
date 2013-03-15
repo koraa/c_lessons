@@ -104,6 +104,8 @@ void quicksort(int* ar, size_t len) {
 
 int main() {
     setvbuf(stdout, NULL, _IONBF, 0);
+    rndinit();
+
     sortt(bubblesort);
     sortt(quicksort);
 }
