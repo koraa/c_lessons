@@ -99,4 +99,22 @@ int* randar(size_t len) {
     itr(i, len) {
         pt[i] = rand();
     }
+
+    return pt;
+}
+
+///////////////////////////////////
+// Arrays
+
+
+void dump_i_arr(int *a, size_t len) {
+    size_t size = sizeof(int) * len;
+
+    printf("int[] where: len=%ld, size=%ldbytes",
+            len, size);
+    itr(i, len) {
+        puti(a[i]);
+        mputc(' '); 
+    }
+    mputc('\n');
 }
