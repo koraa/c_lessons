@@ -100,7 +100,7 @@ void quicksort(int* ar, size_t len) {
 
 #define sortt_l(f, len) sortt_lr(f, 0, len*2, len)
 
-#define sortt(f) sortt_l(f, 16)
+#define sortt(f) sortt_l(f, randrng(1, 64))
 
 int main() {
     setvbuf(stdout, NULL, _IONBF, 0);
