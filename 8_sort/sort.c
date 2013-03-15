@@ -85,6 +85,34 @@ void quicksort(int* ar, size_t len) {
     }
 }
 
+void selectionsort(int* ar, size_t len) {
+    size_t i, j, minp; // First level, secondlevel+shift
+    int minv;
+
+    for (i=0; i<len; i++) {
+        minv = ar[i];
+
+        // Find minimum
+        for (j=i; j<len; j++) {
+            if (ar[j] < minv) {
+                minv = ar[j];
+                minp = j;
+            }
+        }
+
+        // Nothing to do if ar[i] is allready minimum
+        if (minp == i)
+            continue;
+
+        // Shift
+        for (j=minp; j>i; j--)
+            ar[j] = ar[j-1];
+
+        // Insert minimum
+        ar[i] = minv;
+    }
+}
+
 ///////////////////////////////////////////////
 // Main
 
@@ -100,12 +128,13 @@ void quicksort(int* ar, size_t len) {
 
 #define sortt_l(f, len) sortt_lr(f, 0, len*2, len)
 
-#define sortt(f) sortt_l(f, randrng(1, 64))
+#define sortt(f) sortt_l(f, randrng(2, 64))
 
 int main() {
     setvbuf(stdout, NULL, _IONBF, 0);
     rndinit();
 
     sortt(bubblesort);
-    sortt(quicksort);
+    //sortt(quicksort);
+    sortt(selectionsort);
 }
