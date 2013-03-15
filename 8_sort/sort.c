@@ -100,15 +100,8 @@ void selectionsort(int* ar, size_t len) {
             }
         }
 
-        // Nothing to do if ar[i] is allready minimum
-        if (minp == i)
-            continue;
-
-        // Shift
-        for (j=minp; j>i; j--)
-            ar[j] = ar[j-1];
-
-        // Insert minimum
+        // Swap minimum
+        ar[minp] = ar[i];
         ar[i] = minv;
     }
 }
