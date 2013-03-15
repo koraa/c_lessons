@@ -41,3 +41,5 @@ TODO
 ----
 
 * Index
+* Test all old stuff
+* remove implicit memory allocation from stdfuns
