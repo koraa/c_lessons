@@ -110,11 +110,10 @@ int* randar(size_t len) {
 void dump_i_arr(int *a, size_t len) {
     size_t size = sizeof(int) * len;
 
-    printf("int[] where: len=%ld, size=%ldbytes",
+    printf("int[] where: len=%ld, size=%ldbytes ==> ",
             len, size);
     itr(i, len) {
-        puti(a[i]);
-        mputc(' '); 
+        printf("%li:%i ", i, a[i]);
     }
     mputc('\n');
 }
